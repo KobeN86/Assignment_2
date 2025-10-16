@@ -1,0 +1,42 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {"text": "CO₂ Emissions Per Country (1960–2024)"},
+  "width": 1100,
+  "height": 450,
+  "data": {
+    "url": "https://raw.githubusercontent.com/KobeN86/3179_Assignment_2/refs/heads/main/Assignment2/data/annual-co2-emissions-per-country.csv",
+    "format": {"type": "csv"}
+  },
+  "transform": [
+    {"filter": "datum.Year >= 1960"},
+    {
+      "filter": "datum.Entity == 'Australia' || datum.Entity == 'China' || datum.Entity == 'India' || datum.Entity == 'United States' || datum.Entity == 'United Kingdom' || datum.Entity == 'Germany' || datum.Entity == 'Brazil'"
+    }
+  ],
+  "mark": {"type": "area"},
+  "encoding": {
+    "x": {
+      "field": "Year",
+      "type": "temporal",
+      "title": "Year",
+      "axis": {"labelAngle": -45}
+    },
+    "y": {
+      "field": "DIV10",
+      "type": "quantitative",
+      "title": "CO₂ Emissions (Millions of tonnes)",
+      "stack": "zero"
+    },
+    "color": {
+      "field": "Entity",
+      "type": "nominal",
+      "title": "Country",
+      "scale": {"scheme": "purpleorange"}
+    },
+    "tooltip": [
+      {"field": "Entity", "type": "nominal", "title": "Country"},
+      {"field": "Year", "type": "temporal", "title": "Year", "format": "%Y"},
+      {"field": "Emmisions", "type": "quantitative", "title": "CO₂ Emissions (tonnes)", "format": ",.0f"}
+    ]
+  }
+}

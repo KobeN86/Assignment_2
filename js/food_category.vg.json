@@ -1,0 +1,50 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "Average Annual Price Change by Food Category",
+  "width": 900,
+  "height": 500,
+  "data": {
+    "url": "https://raw.githubusercontent.com/KobeN86/3179_Assignment_2/refs/heads/main/Assignment2/data/food_2.csv",
+    "format": {"type": "csv"}
+  },
+  "transform": [
+    {
+      "fold": ["2003-13 (%)", "2013-23 (%)", "2021-23 (%)"],
+      "as": ["Period", "Percent Change"]
+    }
+  ],
+  "mark": {
+    "type": "bar",
+    "width": {"band": 0.7}
+  },
+  "encoding": {
+    "x": {
+      "field": "Category",
+      "type": "nominal",
+      "axis": {"title": null, "labelAngle": -30}
+    },
+    "y": {
+      "field": "Percent Change",
+      "type": "quantitative",
+      "axis": {"title": "Average Annual Change (%)"}
+    },
+    "color": {
+      "field": "Period",
+      "type": "nominal",
+      "scale": {
+        "domain": ["2003-13 (%)", "2013-23 (%)", "2021-23 (%)"],
+        "range": ["#3daed4", "#4b00d6", "#d60000"]
+      },
+      "legend": {"title": "Period"}
+    },
+    "tooltip": [
+      {"field": "Category"},
+      {"field": "Period"},
+      {"field": "Percent Change", "type": "quantitative", "format": ".1f"}
+    ]
+  },
+  "config": {
+    "axis": {"labelFontSize": 13, "titleFontSize": 15},
+    "title": {"fontSize": 22, "anchor": "start"}
+  }
+}
