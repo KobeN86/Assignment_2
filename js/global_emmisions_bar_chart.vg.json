@@ -4,7 +4,7 @@
   "width": 1100,
   "height": 450,
   "data": {
-    "url": "https://raw.githubusercontent.com/KobeN86/3179_Assignment_2/refs/heads/main/Assignment2/data/annual-co2-emissions-per-country.csv",
+    "url": "https://raw.githubusercontent.com/KobeN86/Assignment_2/refs/heads/main/data/annual-co2-emissions-per-country.csv",
     "format": {"type": "csv"}
   },
   "transform": [
