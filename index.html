@@ -14,7 +14,18 @@
       margin: 20px;
     }
 
-
+  .main-title-container {
+    font-size: 36px;
+    font-weight: bold;
+    text-align: center;
+    background-color: #f0f0f0;
+    padding: 20px 40px;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    margin: 0 auto 40px auto;
+    max-width: 900px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  }
     .visualization-container {
       display: flex;
       flex-direction: column;
@@ -55,21 +66,22 @@
   </style>
 </head>
 <body>
-  
+
+  <div class="main-title-container">
+    The State of Farming in Australia
+  </div>
 
   <div class="visualization-container">
-    <div class="visualization-title">The State of Farming in Australia</div>
-    <div class="visualization-description">This map shows the % of land used for farming around the globe</div>
+    <div class="visualization-title">The Land Usage for farming around the globe</div>
+    <div class="visualization-description"></div>
     <div id="choropleth_map"></div>
   </div>
 
-
   <div class="visualization-container">
     <div class="visualization-title">Global Emissions by Country</div>
-    <div class="visualization-description">Global Emmisions are impacting the Climate and causing worse weather for farming</div>
+    <div class="visualization-description">A bar chart representing the total CO₂ emissions per country for the selected year. Use the dropdown or slider to filter data.</div>
     <div id="second_visualization"></div>
   </div>
-
 
   <div class="visualization-container">
     <div class="visualization-title">Wheat Yield Over Time</div>
@@ -77,7 +89,6 @@
     <div class="visualization-description">Wheat yields do remain quite volatile</div>
     <div id="wheat_yield_chart"></div>
   </div>
-
 
   <div class="visualization-container">
     <div class="visualization-title">Annual Rainfall vs Water Costs</div>
@@ -87,18 +98,17 @@
 
   <div class="visualization-container">
     <div class="visualization-title">Annual Rainfall vs Water Costs</div>
-    <div class="visualization-description">Although the Percipitation remains steady, water costs have risen significantly</div>
+    <div class="visualization-description">Track water and rainfall trends over the years to analyze climate patterns and water resource changes.</div>
     <div id="food_chart"></div>
   </div>
 
   <script type="text/javascript">
-
     vegaEmbed('#choropleth_map', 'js/choropleth_map.vg.json').catch(console.error);
     vegaEmbed('#second_visualization', 'js/global_emmisions_bar_chart.vg.json').catch(console.error);
     vegaEmbed('#wheat_yield_chart', 'js/wheat_data.vg.json').catch(console.error);
     vegaEmbed('#water_rainfall_chart', 'js/water_rainfall.vg.json').catch(console.error);
     vegaEmbed('#food_chart', 'js/food_category.vg.json').catch(console.error);
   </script>
-
 </body>
+
 </html>
