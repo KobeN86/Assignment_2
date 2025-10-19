@@ -1,59 +1,84 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The State of Farming in Australia</title>
 
+  <!-- Vega & Vega-Lite -->
   <script src="https://cdn.jsdelivr.net/npm/vega@5.22.1"></script>
   <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.5.0"></script>
   <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.21.0"></script>
 
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+
   <style>
     body {
-      font-family: sans-serif;
-      background-color: white;
+      font-family: "Open Sans", Arial, sans-serif;
+      background-color: #ffffff;
       text-align: center;
       margin: 20px;
+      color: #222;
     }
 
-  .main-title-container {
-    font-size: 36px;
-    font-weight: bold;
-    text-align: center;
-    background-color: #f0f0f0;
-    padding: 20px 40px;
-    border: 1px solid #ddd;
-    border-radius: 12px;
-    margin: 0 auto 40px auto;
-    max-width: 900px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-  }
+    .main-title-container {
+      font-family: "Poppins", sans-serif;
+      font-size: 40px;
+      font-weight: 700;
+      text-align: center;
+      background-color: #f0f0f0;
+      padding: 25px 40px;
+      border: 1px solid #ddd;
+      border-radius: 12px;
+      margin: 0 auto 50px auto;
+      max-width: 900px;
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+    }
+
     .visualization-container {
       display: flex;
       flex-direction: column;
       align-items: center;
       margin-top: 40px;
       border: 1px solid #ddd;
-      padding: 20px;
+      padding: 25px;
       border-radius: 10px;
-      background-color: #f9f9f9;
-      max-width: 900px;
+      background-color: #fafafab3;
+      max-width: 1000px;
       margin-left: auto;
       margin-right: auto;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
     }
 
     .visualization-title {
-      font-size: 24px;
-      font-weight: bold;
-      margin-bottom: 10px;
+      font-family: "Poppins", sans-serif;
+      font-size: 26px;
+      font-weight: 600;
+      margin-bottom: 12px;
+      color: #000000;
     }
 
     .visualization-description {
-      font-size: 16px;
-      margin-bottom: 20px;
+      font-family: "Open Sans", sans-serif;
+      font-size: 22px;
+      margin-bottom: 18px;
       max-width: 800px;
       text-align: center;
+      line-height: 1.5;
+      color: #000000;
     }
 
-    
+    .visualization-body {
+      font-family: "Open Sans", sans-serif;
+      font-size: 15px;
+      margin-bottom: 10px;
+      max-width: 800px;
+      text-align: center;
+      line-height: 1.5;
+      color: #000000;
+    }
+
     .vega-bindings {
       order: -1;
       margin-bottom: 10px;
@@ -62,6 +87,13 @@
 
     input[type="range"] {
       width: 400px;
+    }
+
+    footer {
+      margin-top: 50px;
+      font-size: 14px;
+      color: #000000;
+      text-align: center;
     }
   </style>
 </head>
@@ -72,35 +104,55 @@
   </div>
 
   <div class="visualization-container">
-    <div class="visualization-title">The Land Usage for farming around the globe</div>
-    <div class="visualization-description"></div>
+    <div class="visualization-title">Land Usage for Farming Around the Globe</div>
     <div id="choropleth_map"></div>
   </div>
 
   <div class="visualization-container">
     <div class="visualization-title">Global Emissions by Country</div>
-    <div class="visualization-description">A bar chart representing the total CO₂ emissions per country for the selected year. Use the dropdown or slider to filter data.</div>
+    <div class="visualization-description">
+      An area chart showing annual emissions of major countries.
+    </div>
+    <div class="visualization-body">
+      Global emissions and global warming have been increasing rapidly over the past decades.
+    </div>
+    <div class="visualization-body">
+      This causes more drastic and unpredictable weather — hurting farmers worldwide.
+    </div>
     <div id="second_visualization"></div>
   </div>
 
   <div class="visualization-container">
     <div class="visualization-title">Wheat Yield Over Time</div>
-    <div class="visualization-description">Despite diminishing farm land, wheat yield per capita has increased</div>
-    <div class="visualization-description">Wheat yields do remain quite volatile</div>
+    <div class="visualization-description">
+      Despite diminishing farmland, wheat yield per capita has increased — though yields remain volatile, making farming unpredictable.
+    </div>
     <div id="wheat_yield_chart"></div>
   </div>
 
   <div class="visualization-container">
     <div class="visualization-title">Annual Rainfall vs Water Costs</div>
-    <div class="visualization-description">Track water and rainfall trends over the years to analyze climate patterns and water resource changes.</div>
+    <div class="visualization-description">
+      Water charges have increased dramatically in recent years, while rainfall has decreased — hurting Australian farmers.
+    </div>
     <div id="water_rainfall_chart"></div>
   </div>
 
   <div class="visualization-container">
-    <div class="visualization-title">Annual Rainfall vs Water Costs</div>
-    <div class="visualization-description">Track water and rainfall trends over the years to analyze climate patterns and water resource changes.</div>
+    <div class="visualization-title">Rising Food Prices</div>
+    <div class="visualization-description">
+      Australians are now feeling the impact of these agricultural and environmental challenges.
+    </div>
+    <div class="visualization-body">
+      The price increase from 2021–2023 is significantly larger than previous periods, despite being a shorter timeframe.
+    </div>
     <div id="food_chart"></div>
   </div>
+
+  <footer>
+    <p><strong>Data Sources:</strong> FAO, World Bank, Australian Bureau of Statistics</p>
+    <p><strong>Author:</strong> Kobe N &nbsp;|&nbsp; <strong>Date:</strong> October 2025</p>
+  </footer>
 
   <script type="text/javascript">
     vegaEmbed('#choropleth_map', 'js/choropleth_map.vg.json').catch(console.error);
@@ -109,6 +161,6 @@
     vegaEmbed('#water_rainfall_chart', 'js/water_rainfall.vg.json').catch(console.error);
     vegaEmbed('#food_chart', 'js/food_category.vg.json').catch(console.error);
   </script>
-</body>
 
+</body>
 </html>
